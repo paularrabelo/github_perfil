@@ -5,7 +5,7 @@ import styles from './ReposList.module.css';
 const ReposList = ({ nomeUsuario}) => {
     const [repos, setRepos] = useState([]);
     const [estaCarregando, setEstaCarregando] = useState(true);
-
+    const [erro, setErro] = useState()
     useEffect( () => {
         setEstaCarregando(true);
         fetch(`https://api.github.com/users/${nomeUsuario}/repos`)
@@ -16,10 +16,17 @@ const ReposList = ({ nomeUsuario}) => {
                 setRepos (resJson);
             }, 3000);
         })
+        .catch ((e) => {
+            setErro(true);
+            console.log(e);
+        })
     }, [nomeUsuario]);
 
     return (
         <div className="container">
+            {erro && (
+                <h2>Nome de usuário não encontrado</h2>
+            )}
             {estaCarregando ? (
                 <h1>Carregando ...</h1>
             ) : (
