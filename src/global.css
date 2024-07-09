@@ -15,3 +15,12 @@
     --corPrincipal: #dcdde1;
     --corSecundaria: #111;
 }
+
+.input {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    border-radius: 10px;
+    font-size: 20px;
+}
